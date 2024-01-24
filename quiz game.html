@@ -1,0 +1,323 @@
+
+<html>
+<head>
+  
+  <title>Quiz Game</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #ffefef;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      padding: 10px;
+    }
+
+    #quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .question {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #3498db;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .option {
+      margin: 10px;
+      padding: 15px;
+      border: 2px solid #3498db;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: #fff;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .option:hover {
+      background-color: #3498db;
+      color: #fff;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #27ae60;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div id="quiz-container">
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div id="result"></div>
+    <button onclick="nextQuestion()">Next Question</button>
+  </div>
+
+  <script>
+    const questions = [
+      
+     
+  {
+    question: "Which river is known as the 'Ganga of the South'?",
+    options: ["Yamuna", "Godavari", "Krishna", "Kaveri"],
+    correctAnswer: "Godavari"
+  },
+  {
+    question: "The Indian Parliament is bicameral. Which are the two houses?",
+    options: ["Lok Sabha and Rajya Sabha", "Lok Sabha and Vidhan Sabha", "Rajya Sabha and Vidhan Sabha", "Gram Sabha and Panchayat"],
+    correctAnswer: "Lok Sabha and Rajya Sabha"
+  },
+  {
+    question: "Who was the first woman Prime Minister of India?",
+    options: ["Sonia Gandhi", "Indira Gandhi", "Jawaharlal Nehru", "Sushma Swaraj"],
+    correctAnswer: "Indira Gandhi"
+  },
+  {
+    question: "Which is the largest state in India by area?",
+    options: ["Uttar Pradesh", "Rajasthan", "Maharashtra", "Madhya Pradesh"],
+    correctAnswer: "Rajasthan"
+  },
+  {
+    question: "In which year did India gain independence?",
+    options: ["1942", "1947", "1950", "1962"],
+    correctAnswer: "1947"
+  },
+  {
+    question: "What is the capital city of Karnataka?",
+    options: ["Mumbai", "Bengaluru", "Chennai", "Hyderabad"],
+    correctAnswer: "Bengaluru"
+  },
+  {
+    question: "Who wrote the Indian national anthem 'Jana Gana Mana'?",
+    options: ["Rabindranath Tagore", "Mahatma Gandhi", "Subhas Chandra Bose", "Jawaharlal Nehru"],
+    correctAnswer: "Rabindranath Tagore"
+  },
+  {
+    question: "Which mountain range separates the Indian subcontinent from the Tibetan Plateau?",
+    options: ["Himalayas", "Vindhya Range", "Western Ghats", "Aravalli Range"],
+    correctAnswer: "Himalayas"
+  },
+  {
+    question: "Which Indian festival is known as the Festival of Lights?",
+    options: ["Diwali", "Holi", "Navratri", "Eid"],
+    correctAnswer: "Diwali"
+  },
+  {
+    question: "The Indian currency note bears the signature of which authority?",
+    options: ["Finance Minister", "Reserve Bank of India Governor", "Prime Minister", "President of India"],
+    correctAnswer: "Reserve Bank of India Governor"
+  },
+
+  {
+    question: "Which country is known as the 'Land of the Rising Sun'?",
+    options: ["China", "South Korea", "Japan", "Vietnam"],
+    correctAnswer: "Japan"
+  },
+  {
+    question: "What is the currency of the United States?",
+    options: ["Euro", "Yen", "Dollar", "Pound"],
+    correctAnswer: "Dollar"
+  },
+  {
+    question: "Which continent is known as the 'Dark Continent'?",
+    options: ["Asia", "Africa", "South America", "Australia"],
+    correctAnswer: "Africa"
+  },
+  {
+    question: "The Great Barrier Reef, one of the world's largest coral reefs, is located in which country?",
+    options: ["Australia", "Brazil", "Mexico", "Indonesia"],
+    correctAnswer: "Australia"
+  },
+  {
+    question: "What is the capital city of Russia?",
+    options: ["Berlin", "Paris", "Moscow", "Beijing"],
+    correctAnswer: "Moscow"
+  },
+  {
+    question: "In which ocean would you find the Bermuda Triangle?",
+    options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+    correctAnswer: "Atlantic Ocean"
+  },
+  {
+    question: "Which is the longest river in the world?",
+    options: ["Amazon River", "Nile River", "Yangtze River", "Ganges River"],
+    correctAnswer: "Nile River"
+  },
+  {
+    question: "Which two countries share the longest international border?",
+    options: ["India and Pakistan", "Russia and China", "Canada and the United States", "Brazil and Argentina"],
+    correctAnswer: "Canada and the United States"
+  },
+  {
+    question: "Who is the current Secretary-General of the United Nations?",
+    options: ["Ban Ki-moon", "António Guterres", "Kofi Annan", "Ban Ki-moon"],
+    correctAnswer: "António Guterres"
+  },
+  {
+    question: "Which ocean is the largest by area?",
+    options: ["Indian Ocean", "Atlantic Ocean", "Southern Ocean", "Pacific Ocean"],
+    correctAnswer: "Pacific Ocean"
+  },
+{
+        question: "What is the capital of France?",
+        options: ["Paris", "Berlin", "London", "Rome"],
+        correctAnswer: "Paris"
+      },
+      {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Venus", "Jupiter"],
+        correctAnswer: "Mars"
+      },
+
+  {
+    question: "What is the chemical symbol for water?",
+    options: ["O2", "CO2", "H2O", "N2"],
+    correctAnswer: "H2O"
+  },
+  {
+    question: "Which gas do plants absorb from the atmosphere during photosynthesis?",
+    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+    correctAnswer: "Carbon Dioxide"
+  },
+  {
+    question: "What is the force that pulls objects towards the center of the Earth?",
+    options: ["Gravity", "Magnetism", "Friction", "Tension"],
+    correctAnswer: "Gravity"
+  },
+  {
+    question: "Which planet is known as the 'Red Planet'?",
+    options: ["Earth", "Mars", "Venus", "Jupiter"],
+    correctAnswer: "Mars"
+  },
+  {
+    question: "What is the process by which plants make their own food using sunlight?",
+    options: ["Respiration", "Digestion", "Photosynthesis", "Fermentation"],
+    correctAnswer: "Photosynthesis"
+  },
+  {
+    question: "What is the largest organ in the human body?",
+    options: ["Heart", "Brain", "Liver", "Skin"],
+    correctAnswer: "Skin"
+  },
+  {
+    question: "Which part of the flower produces pollen?",
+    options: ["Stamen", "Pistil", "Sepal", "Petals"],
+    correctAnswer: "Stamen"
+  },
+  {
+    question: "What is the unit of measurement for electric current?",
+    options: ["Volt", "Ampere", "Ohm", "Watt"],
+    correctAnswer: "Ampere"
+  },
+  {
+    question: "Which scientist is famous for his theory of relativity?",
+    options: ["Isaac Newton", "Galileo Galilei", "Albert Einstein", "Stephen Hawking"],
+    correctAnswer: "Albert Einstein"
+  },
+  {
+    question: "What is the smallest bone in the human body?",
+    options: ["Femur", "Stapes", "Tibia", "Fibula"],
+    correctAnswer: "Stapes"
+  }
+
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const questionElement = document.getElementById("question");
+      const optionsElement = document.getElementById("options");
+
+      questionElement.textContent = questions[currentQuestion].question;
+
+      optionsElement.innerHTML = "";
+      questions[currentQuestion].options.forEach((option) => {
+        const optionElement = document.createElement("div");
+        optionElement.classList.add("option");
+        optionElement.textContent = option;
+        optionElement.addEventListener("click", () => checkAnswer(option));
+        optionsElement.appendChild(optionElement);
+      });
+    }
+
+    function checkAnswer(selectedOption) {
+      const correctAnswer = questions[currentQuestion].correctAnswer;
+      const resultElement = document.getElementById("result");
+
+      if (selectedOption === correctAnswer) {
+        score++;
+        resultElement.textContent = "Correct!";
+        resultElement.style.color = "#27ae60";
+      } else {
+        resultElement.textContent = "Incorrect. The correct answer is: " + correctAnswer;
+        resultElement.style.color = "#e74c3c";
+      }
+
+      // Disable further clicks on options
+      const options = document.querySelectorAll(".option");
+      options.forEach((option) => option.removeEventListener("click", () => {}));
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        loadQuestion();
+        document.getElementById("result").textContent = "";
+        document.getElementById("result").style.color = "";
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      const quizContainer = document.getElementById("quiz-container");
+      quizContainer.innerHTML = `<div id="result">Your Score: ${score} out of ${questions.length}</div>`;
+    }
+
+    // Initial display
+    loadQuestion();
+  </script>
+</body>
+
+<footer>
+    Made with ❤️ by Sonu
+  </footer>
+  
+</html>
